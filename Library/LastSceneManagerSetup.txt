@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/MapTool.unity
+- path: Assets/_Scene/MapTool.unity
   isLoaded: 1
   isActive: 1

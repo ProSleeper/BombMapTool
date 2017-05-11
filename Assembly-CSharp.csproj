@@ -46,8 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MapManager.cs" />
-     <Compile Include="Assets\MouseDown.cs" />
+     <Compile Include="Assets\_Scripts\ButtonName.cs" />
+     <Compile Include="Assets\_Scripts\MapManager.cs" />
+     <Compile Include="Assets\_Scripts\MouseDown.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
