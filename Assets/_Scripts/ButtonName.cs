@@ -16,12 +16,14 @@ public class ButtonName : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		
 	}
 
 	void TaskOnClick()
     {
 		Debug.Log(this.gameObject.name);
 		MapManager.Instance.sp = this.gameObject.GetComponent<Image>().sprite;
+		MapManager.Instance.CurrentTileNumber = this.gameObject.name;
     }
 
 }
