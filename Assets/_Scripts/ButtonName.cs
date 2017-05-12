@@ -24,6 +24,7 @@ public class ButtonName : MonoBehaviour {
 		Debug.Log(this.gameObject.name);
 		MapManager.Instance.sp = this.gameObject.GetComponent<Image>().sprite;
 		MapManager.Instance.CurrentTileNumber = this.gameObject.name;
+		MapManager.Instance.CurSprite.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<Image>().sprite;
     }
 
 }

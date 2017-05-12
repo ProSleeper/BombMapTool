@@ -14,9 +14,13 @@ public class MapManager : MonoBehaviour {
 	string[,] arrBinary = new string[17, 13];
 
     public Button SaveMap;
+    public Button ResetMap;
 
     public List<Button> TileButton;
+    public Sprite ResetBlockSp;
+    [HideInInspector]
     public Sprite sp;
+    public GameObject CurSprite;
     int TileNumber;
     public string CurrentTileNumber;
 
@@ -41,6 +45,8 @@ public class MapManager : MonoBehaviour {
     void Start()
     {
         SaveMap.onClick.AddListener(SaveData);
+        ResetMap.onClick.AddListener(ResetBlock);
+
         GameObject tileMap = Resources.Load("Block") as GameObject;
         TileNumber = 0;
         CurrentTileNumber = "0";
@@ -58,10 +64,7 @@ public class MapManager : MonoBehaviour {
 		// Debug.Log(Tile.Count);
 		// Debug.Log(Tile[0].Count);
 
-		sp = TileButton[0].GetComponent<Image>().sprite;
-		Debug.Log(sp.name);
-		Debug.Log(arrBinary.Length);
-
+        sp = Tile[0][0].GetComponentInChildren<SpriteRenderer>().sprite;
 	}
 	
 	// Update is called once per frame
@@ -113,5 +116,16 @@ public class MapManager : MonoBehaviour {
         strData += "};";
         Debug.Log(strData);
         WriteData(strData);
+    }
+
+    void ResetBlock()
+    {
+        for (int i = 0; i < BlockHeight; i++)
+        {
+            for (int j = 0; j < BlockWidth; j++)
+            {
+				Tile[i][j].GetComponentInChildren<SpriteRenderer>().sprite = ResetBlockSp;
+			}
+		}
     }
 }
