@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour {
     [HideInInspector]
     public Sprite sp;
     public GameObject CurSprite;
+    public GameObject MapBackGround;
     int TileNumber;
     public string CurrentTileNumber;
 
@@ -59,6 +60,7 @@ public class MapManager : MonoBehaviour {
                 //tileMap.gameObject.name += (++aa).ToString();
                 Tile[i].Add(Instantiate(tileMap, new Vector3(-1.65f + 0.14f * j, 0.85f - i * 0.14f,0), Quaternion.Euler(0, 0, 0)));
 				Tile[i][j].name = (TileNumber++).ToString();
+                Tile[i][j].transform.parent = MapBackGround.transform;
 			}
 		}
 		// Debug.Log(Tile.Count);
