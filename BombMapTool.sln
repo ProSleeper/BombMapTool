@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombMapTool", "Assembly-CSharp.csproj", "{B6D6620B-54FB-F16F-F348-A2D8111D3086}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombMapTool", "BombMapTool.csproj", "{DD17D2E8-579D-2FEA-7E30-285F0A258B6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B6D6620B-54FB-F16F-F348-A2D8111D3086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6D6620B-54FB-F16F-F348-A2D8111D3086}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6D6620B-54FB-F16F-F348-A2D8111D3086}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6D6620B-54FB-F16F-F348-A2D8111D3086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD17D2E8-579D-2FEA-7E30-285F0A258B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD17D2E8-579D-2FEA-7E30-285F0A258B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD17D2E8-579D-2FEA-7E30-285F0A258B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD17D2E8-579D-2FEA-7E30-285F0A258B6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

@@ -4,26 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public class MapData
+{
+    public string Map;
+    public bool IsMove;
+}
+
 public class MapManager : MonoBehaviour {
 
-	const int BlockWidth = 17;
-	const int BlockHeight = 13;
+    const int BlockWidth = 17;
+    const int BlockHeight = 13;
 
-    List<List<GameObject>> Tile = new List<List<GameObject>>();
-	
-	string[,] arrBinary = new string[17, 13];
-
-    public Button SaveMap;
+    public GameObject CurSprite;
+    public GameObject MapBackGround;
     public Button ResetMap;
-
-    public List<Button> TileButton;
     public Sprite ResetBlockSp;
     [HideInInspector]
     public Sprite sp;
-    public GameObject CurSprite;
-    public GameObject MapBackGround;
-    int TileNumber;
     public string CurrentTileNumber;
+
+    List<List<GameObject>> Tile = new List<List<GameObject>>();
+
+    public MapData[,] arrMap = new MapData[17, 13];
 
     private static MapManager _instance = null;
     
@@ -42,82 +45,40 @@ public class MapManager : MonoBehaviour {
 		_instance = this;
     }
 
-    // Use this for initialization
     void Start()
     {
-        SaveMap.onClick.AddListener(SaveData);
         ResetMap.onClick.AddListener(ResetBlock);
+        MapInit();
+    }
 
-        GameObject tileMap = Resources.Load("Block") as GameObject;
-        TileNumber = 0;
+    void MapInit()
+    {
+        GameObject tileMap = Resources.Load("Map") as GameObject;
+        int TileNumber = 0;
         CurrentTileNumber = "0";
         for (int i = 0; i < BlockHeight; i++)
         {
             Tile.Add(new List<GameObject>());
             for (int j = 0; j < BlockWidth; j++)
             {
-                arrBinary[j,i] = "0";
-                //tileMap.gameObject.name += (++aa).ToString();
-                Tile[i].Add(Instantiate(tileMap, new Vector3(-1.65f + 0.14f * j, 0.85f - i * 0.14f,0), Quaternion.Euler(0, 0, 0)));
-				Tile[i][j].name = (TileNumber++).ToString();
+                arrMap[j, i] = new MapData();
+                arrMap[j, i].Map = "0";
+                arrMap[j, i].IsMove = true;
+                Tile[i].Add(Instantiate(tileMap, new Vector3(-1.65f + 0.14f * j, 0.85f - i * 0.14f, 0), Quaternion.Euler(0, 0, 0)));
+                Tile[i][j].name = (TileNumber++).ToString();
                 Tile[i][j].transform.parent = MapBackGround.transform;
-			}
-		}
-		// Debug.Log(Tile.Count);
-		// Debug.Log(Tile[0].Count);
-
-        sp = Tile[0][0].GetComponentInChildren<SpriteRenderer>().sprite;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Debug.Log(arrBinary[0,0]);
-        //Debug.Log(arrBinary[16,12]);
-	}
-
-    public void ArrayInputNumber(int x, int y)
-    {
-        Debug.Log("X: " + x);
-        Debug.Log("Y: " + y);
-        arrBinary[x,y] = CurrentTileNumber;
-    }
-
-    public void WriteData(string strData)
-    {
-        FileStream  file = new FileStream("MapData.h", FileMode.Create, FileAccess.Write);
-
-        StreamWriter writer = new StreamWriter(file, System.Text.Encoding.Unicode);
-
-        writer.WriteLine(strData);
-
-        writer.Close();
-    }
-
-    void SaveData()
-    {
-        string strData = "";
-        strData = "int mapData[13][17] =\n{";
-        for (int i = 0; i < BlockHeight; i++)
-        {
-            strData += "{ ";
-            for (int j = 0; j < BlockWidth; j++)
-            {
-                strData += arrBinary[j,i];
-                if (j + 1 != BlockWidth)
-                {
-                    strData += ", ";
-                }
-            }
-            strData += "}";
-            if (i + 1 != BlockHeight)
-            {
-                
-                strData += ",\n";
             }
         }
-        strData += "};";
-        Debug.Log(strData);
-        WriteData(strData);
+        sp = Tile[0][0].GetComponentInChildren<SpriteRenderer>().sprite;
+    }
+    
+    public void ArrayInputNumber(int x, int y)
+    {
+        arrMap[x,y].Map = CurrentTileNumber;
+        int temp;
+        int.TryParse(CurrentTileNumber, out temp);
+
+        arrMap[x, y].IsMove = temp < 3 ? true : false;
     }
 
     void ResetBlock()
@@ -127,7 +88,10 @@ public class MapManager : MonoBehaviour {
             for (int j = 0; j < BlockWidth; j++)
             {
 				Tile[i][j].GetComponentInChildren<SpriteRenderer>().sprite = ResetBlockSp;
-			}
+                arrMap[j, i].Map = "0";
+                arrMap[j, i].IsMove = true;
+
+            }
 		}
     }
 }
